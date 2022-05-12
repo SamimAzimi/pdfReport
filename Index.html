@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<style>
+    header {
+        line-height: 16px;
+    }
+    h1, h2, h3, h4, h5 {
+        text-align: center;
+    }
+
+
+    p {
+        font-size: 1.25rem;
+    }
+    .inspectionReport {
+        text-decoration: underline;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+    .dataSection {
+        border:1px solid black;
+        background-color: darkblue;
+        color:white;
+    }
+    table {
+        border:1px solid black;
+
+    }
+    .detailsColumn {
+        width: 32px;
+    }
+    .imageColumn {
+        border: 1px solid black;
+        width: 80px;
+        height: 80px;
+    }
+    .imageColumn > img {
+        height: 100%;
+        width: 100%;
+        border: 1px solid black;
+
+        object-fit: fill;
+    }
+</style>
+</head>
+<body>
+    <header>
+
+        <h1>REFRATECK (M) SDN BHD (853645-H)</h1>
+    
+        <h2>AN ISO 9001:2015 CERTIFIED COMPANY</h2>
+    
+        <h3>No.8 JALANSUNGAI BETING 4/KU3, OFF JALAN SUNGAI PUTUS, 42100 KLANG SELANGIOR, MALAYSIA</h3>
+        <h4>Tel: +603-3341 1592 , Email: refrateck@gmail.com, web: www.refrateck.com</h4>
+        
+        <h3 class="inspectionReport">Inspection Report</h3>
+    </header>
+
+    <table>
+        <thead>
+            <tr>
+            </tr>
+        </thead>
+        <tr>
+            <td>Client</td>
+            <td><input type="text" /></td>
+            <td>Purpose</td>
+            <td><input type="text" /></td>
+            <td>Date</td> 
+            <td><input type="date" /></td>
+        </tr>
+            <tr>
+                <td>Line</td>
+                <td><input type="text" /></td>
+                <td>Inspected By</td>
+                <td><input type="text" /></td>
+                <td>Time</td>
+                <td><input type="time"/></td>
+            </tr>
+        <tr>
+            <td>Area</td>
+            <td><input type="text" /></td>
+            <td>Owner</td>
+            <td><input type="text" /></td>
+            <td>Workspace</td>
+            <td><input type="text" /></td>
+        </tr>
+            <tr class="datarow">
+                <td class="dataSection">No</td>
+                <td class="dataSection" colspan="2">Details</td>
+                <td  class="dataSection" colspan="3">Picture/Drawing/Obeservation</td>
+            </tr>
+            <tr>
+                <td >1</td>
+                <td colspan="2" class="detailsColumn">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard
+                dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
+                book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially
+                unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
+                recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</td>
+                <td colspan="3" class="imageColumn"><img src="./images/activity.jpg" /></td>
+            </tr>
+
+                <tr>
+                    <td>Prepared By</td>
+                    <td><input type="text" /></td>
+                    <td>Verified By</td>
+                    <td><input type="text" /></td>
+                    <td>Approved By</td>
+                    <td><input type="text" /></td>
+                </tr>
+                <tr>
+                    <td>Name</td>
+                    <td><input type="text" /></td>
+                    <td>Name</td>
+                    <td><input type="text" /></td>
+                    <td>Name</td>
+                    <td><input type="text" /></td>
+                </tr>
+                <tr>
+                    <td>Date</td>
+                    <td><input type="date" /></td>
+                    <td>Date</td>
+                    <td><input type="date" /></td>
+                    <td>Date</td>
+                    <td><input type="date" /></td>
+                </tr>
+    </table>
+
+    <section class="adding">
+        <form>
+            <label>Details</label>
+            <input type="textarea" />
+            <label>Picture</label>
+            <div>
+                <h4>Drag and Drop</h4>
+            </div>
+            <input type="file" accept="jpeg,png" />
+            <input type="submit" />
+        </form>
+    </section>
+</body>
+</html>
