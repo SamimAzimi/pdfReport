@@ -1,0 +1,54 @@
+header {
+  line-height: 16px;
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+  text-align: center;
+}
+
+p {
+  font-size: 1.25rem;
+}
+.inspectionReport {
+  text-decoration: underline;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+form {
+  display: flex;
+  flex-direction: column;
+}
+.dataSection {
+  border: 1px solid black;
+  background-color: darkblue;
+  color: white;
+}
+table {
+  border: 1px solid black;
+}
+.detailsColumn {
+  width: 32px;
+}
+.imageColumn {
+  border: 1px solid black;
+  width: 168px;
+  height: 168px;
+}
+.imageColumn > img {
+  height: 100%;
+  width: 100%;
+  border: 1px solid black;
+
+  object-fit: fill;
+}
+.datacontainer > td {
+  border: 1px solid black;
+}

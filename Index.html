@@ -3,57 +3,8 @@
 <html>
 
 <head>
-<style>
-    header {
-        line-height: 16px;
-    }
-    h1, h2, h3, h4, h5 {
-        text-align: center;
-    }
-
-
-    p {
-        font-size: 1.25rem;
-    }
-    .inspectionReport {
-        text-decoration: underline;
-    }
-
-    body {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-    form {
-        display: flex;
-        flex-direction: column;
-    }
-    .dataSection {
-        border:1px solid black;
-        background-color: darkblue;
-        color:white;
-    }
-    table {
-        border:1px solid black;
-
-    }
-    .detailsColumn {
-        width: 32px;
-    }
-    .imageColumn {
-        border: 1px solid black;
-        width: 80px;
-        height: 80px;
-    }
-    .imageColumn > img {
-        height: 100%;
-        width: 100%;
-        border: 1px solid black;
-
-        object-fit: fill;
-    }
-</style>
+<link href="./styles/index.css" rel="stylesheet">
+<script defer src="./script/index.js" ></script>
 </head>
 <body>
     <header>
@@ -102,15 +53,11 @@
                 <td class="dataSection" colspan="2">Details</td>
                 <td  class="dataSection" colspan="3">Picture/Drawing/Obeservation</td>
             </tr>
-            <tr>
-                <td >1</td>
-                <td colspan="2" class="detailsColumn">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard
-                dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
-                book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially
-                unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
-                recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</td>
-                <td colspan="3" class="imageColumn"><img src="./images/activity.jpg" /></td>
-            </tr>
+                <tr class="datacontainer">
+                    <td >1</td>
+                    <td colspan="2" class="detailsColumn">Lorem</td>
+                    <td colspan="3" class="imageColumn"><img src="./images/activity.jpg" /></td>
+                </tr>
 
                 <tr>
                     <td>Prepared By</td>
@@ -139,15 +86,16 @@
     </table>
 
     <section class="adding">
-        <form>
+        <form id="formData">
             <label>Details</label>
-            <input type="textarea" />
+            <input type="textarea" name="detailsInsertData" id="detailsInsertData"/>
             <label>Picture</label>
             <div>
                 <h4>Drag and Drop</h4>
             </div>
             <input type="file" accept="jpeg,png" />
             <input type="submit" />
+            <input type="reset" />
         </form>
     </section>
 </body>
