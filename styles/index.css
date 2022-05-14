@@ -35,6 +35,7 @@ table {
   border: 1px solid black;
 }
 .detailsColumn {
+  border: 1px solid black;
   width: 32px;
 }
 .imageColumn {
@@ -49,6 +50,11 @@ table {
 
   object-fit: fill;
 }
-.datacontainer > td {
+#test {
   border: 1px solid black;
+}
+@media print {
+  .adding {
+    display: none;
+  }
 }
