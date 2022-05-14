@@ -5,36 +5,25 @@
 const form = document.getElementById('formData')
 form.addEventListener('submit',(e)=>{
     e.preventDefault();
-
-    let colnumber = 1; 
     const table = document.getElementById('table')
-    var new_row = document.createElement("tr")
-    new_row.setAttribute('class','datacontainer');
-    new_row.setAttribute('id','dataHeadings');
+    let new_row = document.createElement("tr")
+    new_row.classList.add('datacontainer');
     new_row = table.insertRow(table.rows.length-4)
-  
 
-    var cell0 = document.createElement("td")
-    cell0 = new_row.insertCell(0)
 
-    var cell1 = document.createElement("td")
-    cell1.setAttribute('colspan','2');
-    cell1.setAttribute('class','detailsColumn');
-    cell1 = new_row.insertCell(1)
-    
+    new_row.innerHTML = `
+            <td>${(table.rows.length-7)-2}</td>
+            <td colspan="2" class="detailsColumn">${e.target[1].value}</td>
+            <td colspan="3" class="imageColumn">${e.target[2].value}</td>
+    `;
 
-    var cell2 = document.createElement("td")
-    cell2.setAttribute('colspan','3');
-    cell2.setAttribute('class','imageColumn');
-    cell2 = new_row.insertCell(2)
    
     
-    cell0.innerText =  (table.rows.length-7)-2;
-    cell1.innerText = e.target[0].value; 
-    cell2.innerText = e.target[1].value; 
 
     //  e.target[0].value='';
     // e.target[1].value='';
+  window.scrollBy(0, window.innerHeight);
+
 
 })
 form.addEventListener('reset',(e)=>{
