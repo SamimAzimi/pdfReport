@@ -5,19 +5,36 @@
 const form = document.getElementById('formData')
 form.addEventListener('submit',(e)=>{
     e.preventDefault();
-    console.log(e.target[1].value)
 
+    let colnumber = 1; 
+    const table = document.getElementById('table')
+    var new_row = document.createElement("tr")
+    new_row.setAttribute('class','datacontainer');
+    new_row.setAttribute('id','dataHeadings');
+    new_row = table.insertRow(table.rows.length-4)
+  
 
+    var cell0 = document.createElement("td")
+    cell0 = new_row.insertCell(0)
 
-    const row = document.createElement("tr");
-    const column = document.createElement("td")
+    var cell1 = document.createElement("td")
+    cell1.setAttribute('colspan','2');
+    cell1.setAttribute('class','detailsColumn');
+    cell1 = new_row.insertCell(1)
+    
 
-    const node = document.createTextNode(e.target[0].value);
-    column.appendChild(node);
+    var cell2 = document.createElement("td")
+    cell2.setAttribute('colspan','3');
+    cell2.setAttribute('class','imageColumn');
+    cell2 = new_row.insertCell(2)
+   
+    
+    cell0.innerText =  (table.rows.length-7)-2;
+    cell1.innerText = e.target[0].value; 
+    cell2.innerText = e.target[1].value; 
 
-const element = document.getElementById("insertData");
-row.appendChild(column)
-element.appendChild(row);
+    //  e.target[0].value='';
+    // e.target[1].value='';
 
 })
 form.addEventListener('reset',(e)=>{
@@ -25,3 +42,6 @@ form.addEventListener('reset',(e)=>{
     e.target[0].value='';
     e.target[1].value='';
 })
+
+
+
