@@ -25,6 +25,11 @@ body {
 form {
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
+  height: 360px;
+}
+.btngroup {
+  display: flex;
 }
 .dataSection {
   border: 1px solid black;
@@ -48,12 +53,48 @@ table {
   width: 100%;
   border: 1px solid black;
 
-  object-fit: fill;
+  object-fit: cover;
 }
 #test {
   border: 1px solid black;
+  width: 100%;
+  height: 100%;
+}
+
+canvas, img {
+  image-rendering: optimizeQuality;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: optimize-contrast;
+  -ms-interpolation-mode: nearest-neighbor;
 }
 @media print {
+  @page {
+    size: auto;
+    margin: 0mm;
+    
+  }
+ 
+  html
+  {
+      background-color: #FFFFFF; 
+      margin: 0px;  /* this affects the margin on the html before sending to printer */
+  }
+
+  body
+  {
+      border: solid 1px blue ;
+      margin: 10mm ; /* margin you want for the content */
+  }
+  table {
+    max-width: 100%;
+    height: 100%;
+    page-break-after: always;
+  }
+
+  input {
+    width: 90%;
+  }
   .adding {
     display: none;
   }
