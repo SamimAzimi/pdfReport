@@ -204,20 +204,16 @@ function pdfGen() {
 
          doc.autoTable({
             margin: { top: 5.7 },
-            html: "#tableHead"
+            html: "#tableHead",
+            didDrawPage: function (data) {
+               doc.autoTable({
+                  margin: { top: 25 },
+                  html: "#tableFooter",
+               })
+            }
          })
 
-         var str = 'Page ' + doc.internal.getNumberOfPages()
-         // Total page number plugin only available in jspdf v1.0+
-         if (typeof doc.putTotalPages === 'function') {
-            str = str + ' of ' + totalPagesExp
-         }
-         doc.setFontSize(10)
 
-         // jsPDF 1.4+ uses getWidth, <1.4 uses .width
-         var pageSize = doc.internal.pageSize
-         var pageHeight = pageSize.height ? pageSize.height : pageSize.getHeight()
-         doc.text(str, data.settings.margin.left, pageHeight - 10)
 
       },
       didDrawCell: (data) => {
@@ -230,7 +226,7 @@ function pdfGen() {
       rowPageBreak: 'avoid', // avoid breaking rows into multiple sections
       margin: { top: 8 },
       body: data,
-      bodyStyles: { minCellHeight: 5 },
+      bodyStyles: { minCellHeight: 5.3 },
       columnStyles: {
          0: { cellWidth: 1 },
          1: { cellWidth: 8.01 },
