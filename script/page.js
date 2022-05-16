@@ -8,7 +8,8 @@ const PageMetaData = [
         name:"REFRATECK (M) SDN BHD (853645-H)",
         iso:"AN ISO 9001:2015 CERTIFIED COMPANY",
         address:"No.8 JALANSUNGAI BETING 4/KU3, OFF JALAN SUNGAI PUTUS, 42100 KLANG SELANGIOR, MALAYSIA",
-        phone:"Tel: +603-3341 1592 , Email: refrateck@gmail.com, web: www.refrateck.com"
+        phone:"Tel: +603-3341 1592 , Email: refrateck@gmail.com, web: www.refrateck.com", 
+        title:"Inspection Report"
     }
 ]
 

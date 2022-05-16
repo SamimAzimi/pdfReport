@@ -109,7 +109,7 @@ const array = [1,2,3,4,5,6,7,8,9,10,11,12,13]
 function demoFromHTML() {
     var doc = new jsPDF({
        orientation: 'p',
- unit: 'mm',
+ unit: 'cm',
  format: 'a4',
 
     });
@@ -121,14 +121,94 @@ const name = PageMetaData[0].name
 const iso = PageMetaData[0].iso
 const address = PageMetaData[0].address
 const phone = PageMetaData[0].phone
-doc.addImage(logo1, 'JPEG', 10, 10, 15, 15)
+const title = PageMetaData[0].title
+doc.addImage(logo1, 'JPEG', 1.5, 3.5, 1.2, 1)
 // addimge(x,y,width , height)
-doc.addImage(logo2, 'JPEG', 180, 10, 15, 15)
-doc.text(30, 15, name)
-doc.text(20, 25, iso)
-doc.text(20, 35, address)
-doc.text(20, 45, phone)
+// font size 
+// 25.5
+// 15.75pt
+// 12pt
+// 9.75pt
+// 9pt
+// 8pt
+// 7.5pt
+// 6.75pt
+// 6.75pt
+// 6pt
+doc.addImage(logo2, 'JPEG', 17.5, 3.5, 1.2, 1)
+doc.setFontSize(15)
+doc.text(6, 4, name)
+doc.setFontSize(12)
+doc.text(6.5, 4.5, iso)
+doc.setFontSize(9)
+doc.text(3, 5.3, address)
+doc.setFontSize(9)
+doc.text(4.5, 5.9, phone)
+doc.setFontSize(12)
+doc.text(8.5, 6.5, title)
+
+
+
+
+
+var generateData = function (amount) {
+var result = [];
+var data =
+{
+    coin: "100",
+    game_group: "GameGroup",
+    game_name: "XPTO2",
+    game_version: "25",
+    machine: "20485861",
+    vlt: "0"
+};
+for (var i = 0; i < amount; i += 1) {
+    data.id = (i + 1).toString();
+    result.push(Object.assign({}, data));
+}
+return result;
+};
+
+function createHeaders(keys) {
+    var result = [];
+    for (var i = 0; i < keys.length; i += 1) {
+        result.push({
+        'id' : keys[i],
+            'name': keys[i],
+            'prompt': keys[i],
+            'width': 65,
+            'align': 'center',
+            'padding': 0
+        });
+    }
+    return result;
+}
+
+
+
+var headers = createHeaders(["id", "coin", "game_group"]);
+
+doc.table(0.8, 7, generateData(1), headers, { autoSize: true });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 doc.save();
+
+
+
+
    // const source = document.getElementById('tablediv')
 
 
