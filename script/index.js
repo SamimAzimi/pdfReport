@@ -1,11 +1,11 @@
-import {PageMetaData} from "./page"
+
 
 var uploadImage = '';
 var imgsrc = ''
 var ctx = '';
 const image_Input = document.getElementById('imageInput');
 const downloadPDF = document.getElementById('downloadPDF');
- console.log(pageJson.PageMetaData)
+
 function drawImageScaled(img, ctx) {
    var canvas = ctx.canvas;
    var hRatio = canvas.width / img.width;
@@ -27,17 +27,18 @@ image_Input.addEventListener("change", (ev) => {
    var reader = new FileReader();
 
    if (ev.target.files) {
-      file = ev.target.files[0];
+      const file = ev.target.files[0];
       reader.readAsDataURL(file)
    }
    
    reader.onloadend = function (e) {
+    
      
       var image = new Image();
       image.src = e.target.result;
       imgsrc = e.target.result;
       image.onload = function (ev) {
-         console.log(PageMetaData)
+       
          uploadImage = image;
       }
    }
@@ -62,7 +63,7 @@ form.addEventListener('submit', (e) => {
    var col1 = document.createElement('td')
    col1.setAttribute('colspan', '2')
    col1.setAttribute('class', 'detailsColumn')
-   col1.append(e.target[0].value.toString())
+   col1.innerHTML = e.target[0].value.replace(/\n\r?/g, '<br />')
 
    var col2 = document.createElement('td')
    col2.setAttribute('colspan', '3')
@@ -106,31 +107,50 @@ form.addEventListener('reset', (e) => {
 downloadPDF.addEventListener("click",demoFromHTML)
 const array = [1,2,3,4,5,6,7,8,9,10,11,12,13]
 function demoFromHTML() {
-    var pdf = new jsPDF( 'a4');
-   const source = document.getElementById('tablediv')
+    var doc = new jsPDF({
+       orientation: 'p',
+ unit: 'mm',
+ format: 'a4',
+
+    });
+
+
+const logo1 = PageMetaData[0].logo1
+const logo2 = PageMetaData[0].logo2
+const name = PageMetaData[0].name
+const iso = PageMetaData[0].iso
+const address = PageMetaData[0].address
+const phone = PageMetaData[0].phone
+doc.addImage(logo1, 'JPEG', 10, 10, 15, 15)
+// addimge(x,y,width , height)
+doc.addImage(logo2, 'JPEG', 180, 10, 15, 15)
+doc.text(30, 15, name)
+doc.text(20, 25, iso)
+doc.text(20, 35, address)
+doc.text(20, 45, phone)
+doc.save();
+   // const source = document.getElementById('tablediv')
 
 
    
-    margins = {
-        top: 80,
-        bottom: 60,
-        left: 40,
-        width: 522
-    };
-    // all coords and widths are in jsPDF instance's declared units
-    // 'inches' in this case
-    pdf.fromHTML(
-    source, // HTML string or DOM elem ref.
-    margins.left, // x coord
-    margins.top, { // y coord
-        'width': margins.width, // max width of content on PDF
+   //  margins = {
+   //      top: 80,
+   //      bottom: 60,
+   //      left: 40,
+   //      width: 522
+   //  };
+  
+   //  pdf.fromHTML(
+   //  source, 
+   //  margins.left, 
+   //  margins.top, { 
+   //      'width': margins.width, 
         
-    },
+   //  },
 
-    function (dispose) {
-        // dispose: object with X, Y of the last line add to the PDF 
-        //          this allow the insertion of new lines after html
-        pdf.save('Test.pdf');
-    }, margins);
+   //  function (dispose) {
+        
+   //      pdf.save('Test.pdf');
+   //  }, margins);
 
 }
