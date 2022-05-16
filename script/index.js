@@ -30,15 +30,15 @@ image_Input.addEventListener("change", (ev) => {
       const file = ev.target.files[0];
       reader.readAsDataURL(file)
    }
-   
+
    reader.onloadend = function (e) {
-    
-     
+
+
       var image = new Image();
       image.src = e.target.result;
       imgsrc = e.target.result;
       image.onload = function (ev) {
-       
+
          uploadImage = image;
       }
    }
@@ -104,133 +104,145 @@ form.addEventListener('reset', (e) => {
 
 
 
-downloadPDF.addEventListener("click",demoFromHTML)
-const array = [1,2,3,4,5,6,7,8,9,10,11,12,13]
-function demoFromHTML() {
-    var doc = new jsPDF({
-       orientation: 'p',
- unit: 'cm',
- format: 'a4',
+downloadPDF.addEventListener("click", pdfGen)
+const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+function pdfGen() {
+   var doc = new jsPDF({
+      orientation: 'p',
+      unit: 'cm',
+      format: 'a4',
 
-    });
+   });
+   var arraylen = array.length
+   const logo1 = PageMetaData[0].logo1
+   const logo2 = PageMetaData[0].logo2
+   const name = PageMetaData[0].name
+   const iso = PageMetaData[0].iso
+   const address = PageMetaData[0].address
+   const phone = PageMetaData[0].phone
+   const title = PageMetaData[0].title
+   function pagination() {
+      if (arraylen <= 0) {
 
+      }
+      else {
+         doc.addImage(logo1, 'JPEG', 1.5, 3.5, 1.2, 1)
+         // addimge(x,y,width , height)
+         // font size 
+         // 25.5
+         // 15.75pt
+         // 12pt
+         // 9.75pt
+         // 9pt
+         // 8pt
+         // 7.5pt
+         // 6.75pt
+         // 6.75pt
+         // 6pt
+         doc.addImage(logo2, 'JPEG', 17.5, 3.5, 1.2, 1)
+         doc.setFontSize(15)
+         doc.text(6, 4, name)
+         doc.setFontSize(12)
+         doc.text(6.5, 4.5, iso)
+         doc.setFontSize(9)
+         doc.text(3, 5.3, address)
+         doc.setFontSize(9)
+         doc.text(4.5, 5.9, phone)
+         doc.setFontSize(12)
+         doc.text(8.5, 6.5, title)
 
-const logo1 = PageMetaData[0].logo1
-const logo2 = PageMetaData[0].logo2
-const name = PageMetaData[0].name
-const iso = PageMetaData[0].iso
-const address = PageMetaData[0].address
-const phone = PageMetaData[0].phone
-const title = PageMetaData[0].title
-doc.addImage(logo1, 'JPEG', 1.5, 3.5, 1.2, 1)
-// addimge(x,y,width , height)
-// font size 
-// 25.5
-// 15.75pt
-// 12pt
-// 9.75pt
-// 9pt
-// 8pt
-// 7.5pt
-// 6.75pt
-// 6.75pt
-// 6pt
-doc.addImage(logo2, 'JPEG', 17.5, 3.5, 1.2, 1)
-doc.setFontSize(15)
-doc.text(6, 4, name)
-doc.setFontSize(12)
-doc.text(6.5, 4.5, iso)
-doc.setFontSize(9)
-doc.text(3, 5.3, address)
-doc.setFontSize(9)
-doc.text(4.5, 5.9, phone)
-doc.setFontSize(12)
-doc.text(8.5, 6.5, title)
+         if (arraylen > 3) {
 
+            // doc.addPage();
+         }
 
+         arraylen = arraylen - 3;
+         // pagination();
+      }
 
+   }
 
+   const data = [
+      {
+         id: '5', desc: 'Soil type: clay soil, excavation depth: 20mm', img: "",
+      },
+      { id: '19', desc: 'Canada', img: "" },
+      { id: '99', desc: 'Canada', img: "" },
+      { id: '99', desc: 'Canada', img: "" },
+      { id: '99', desc: 'Canada', img: "" },
+      { id: '99', desc: 'Canada', img: "" },
+      { id: '99', desc: 'Canada', img: "" },
+      { id: '99', desc: 'Canada', img: "" },
+      { id: '99', desc: 'Canada', img: "" },
+      { id: '99', desc: 'Canada', img: "" },
+      { id: '19', desc: 'Canada', img: "" },
+      { id: '99', desc: 'Canada', img: "" },
+      { id: '99', desc: 'Canada', img: "" },
+      { id: '99', desc: 'Canada', img: "" },
+      { id: '99', desc: 'Canada', img: "" },
+      { id: '99', desc: 'Canada', img: "" },
+      { id: '99', desc: 'Canada', img: "" },
+      { id: '99', desc: 'Canada', img: "" },
+      { id: '99', desc: 'Canada', img: "" },
+   ]
+   // pagination();
+   doc.autoTable({
+      didDrawPage: function (data) {
+         console.log(data.table.columns.index)
+         doc.addImage(logo1, 'JPEG', 1.5, 1, 2, 2)
+         doc.addImage(logo2, 'JPEG', 17.5, 1, 2, 2)
+         doc.setFontSize(15)
+         doc.text(6, 1.5, name)
+         doc.setFontSize(12)
+         doc.text(6.5, 2.5, iso)
+         doc.setFontSize(9)
+         doc.text(3, 3.3, address)
+         doc.setFontSize(9)
+         doc.text(4.5, 4.3, phone)
+         doc.setFontSize(12)
+         doc.text(8.5, 5.3, title)
 
-var generateData = function (amount) {
-var result = [];
-var data =
-{
-    coin: "100",
-    game_group: "GameGroup",
-    game_name: "XPTO2",
-    game_version: "25",
-    machine: "20485861",
-    vlt: "0"
-};
-for (var i = 0; i < amount; i += 1) {
-    data.id = (i + 1).toString();
-    result.push(Object.assign({}, data));
-}
-return result;
-};
+         doc.autoTable({
+            margin: { top: 5.7 },
+            html: "#tableHead"
+         })
 
-function createHeaders(keys) {
-    var result = [];
-    for (var i = 0; i < keys.length; i += 1) {
-        result.push({
-        'id' : keys[i],
-            'name': keys[i],
-            'prompt': keys[i],
-            'width': 65,
-            'align': 'center',
-            'padding': 0
-        });
-    }
-    return result;
-}
+         var str = 'Page ' + doc.internal.getNumberOfPages()
+         // Total page number plugin only available in jspdf v1.0+
+         if (typeof doc.putTotalPages === 'function') {
+            str = str + ' of ' + totalPagesExp
+         }
+         doc.setFontSize(10)
 
+         // jsPDF 1.4+ uses getWidth, <1.4 uses .width
+         var pageSize = doc.internal.pageSize
+         var pageHeight = pageSize.height ? pageSize.height : pageSize.getHeight()
+         doc.text(str, data.settings.margin.left, pageHeight - 10)
 
+      },
+      didDrawCell: (data) => {
+         console.log(data.cell)
+         if (data.section === "body" && data.column.index === 2) {
+            var base64Img = logo1
+            doc.addImage(base64Img, 'JPEG', data.cell.x + 0.1, data.cell.y + 0.1, data.cell.width, data.cell.height)
+         }
+      },
+      rowPageBreak: 'avoid', // avoid breaking rows into multiple sections
+      margin: { top: 8 },
+      body: data,
+      bodyStyles: { minCellHeight: 5 },
+      columnStyles: {
+         0: { cellWidth: 1 },
+         1: { cellWidth: 8.01 },
+         2: { cellWidth: 9.2 },
 
-var headers = createHeaders(["id", "coin", "game_group"]);
+      },
+      columns: [
+         { header: 'No', dataKey: 'id' },
+         { header: 'Details', dataKey: 'desc' },
+         { header: 'Picture/Drawing/Observation', dataKey: 'img' },
+      ],
 
-doc.table(0.8, 7, generateData(1), headers, { autoSize: true });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-doc.save();
-
-
-
-
-   // const source = document.getElementById('tablediv')
-
-
-   
-   //  margins = {
-   //      top: 80,
-   //      bottom: 60,
-   //      left: 40,
-   //      width: 522
-   //  };
-  
-   //  pdf.fromHTML(
-   //  source, 
-   //  margins.left, 
-   //  margins.top, { 
-   //      'width': margins.width, 
-        
-   //  },
-
-   //  function (dispose) {
-        
-   //      pdf.save('Test.pdf');
-   //  }, margins);
-
+   })
+   doc.save();
 }

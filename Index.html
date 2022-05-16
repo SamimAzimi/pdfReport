@@ -3,11 +3,13 @@
 <html>
 
 <head>
-<link href="./styles/index.css" rel="stylesheet">
-<script src="./script/page.js" defer ></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"  defer></script>
-<script  src="./script/index.js" defer></script>
+    <link href="./styles/index.css" rel="stylesheet">
+    <script src="./script/page.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js" defer></script>
+    <script src="https://unpkg.com/jspdf-autotable@3.5.22/dist/jspdf.plugin.autotable.js" defer></script>
+    <script src="./script/index.js" defer></script>
 </head>
+
 <body>
     <header>
         <div>
@@ -20,46 +22,46 @@
         <h3 class="inspectionReport">Inspection Report</h3>
     </header>
     <div id="tablediv">
-    <table id="table">
+        <table id="table">
             <colgroup>
                 <col width="30%">
                 <col width="30%">
                 <col width="30%">
             </colgroup>
-    <thead>
-        <tr>
-            <td>Client</td>
-            <td><input type="text" /></td>
-            <td>Purpose</td>
-            <td><input type="text" /></td>
-            <td>Date</td> 
-            <td><input type="date" /></td>
-        </tr>
-            <tr>
-                <td>Line</td>
-                <td><input type="text" /></td>
-                <td>Inspected By</td>
-                <td><input type="text" /></td>
-                <td>Time</td>
-                <td><input type="time"/></td>
-            </tr>
-        <tr>
-            <td>Area</td>
-            <td><input type="text" /></td>
-            <td>Owner</td>
-            <td><input type="text" /></td>
-            <td>Workspace</td>
-            <td><input type="text" /></td>
-        </tr>
-    </thead>
-    <tbody>
-            <tr class="datarow">
-                <td class="dataSection">No</td>
-                <td class="dataSection" colspan="2">Details</td>
-                <td  class="dataSection" colspan="3">Picture/Drawing/Obeservation</td>
-            </tr>
-              
+            <thead id="tableHead">
+                <tr>
+                    <td>Client</td>
+                    <td><input type="text" id="clientInput" /></td>
+                    <td>Purpose</td>
+                    <td><input type="text" /></td>
+                    <td>Date</td>
+                    <td><input type="date" /></td>
+                </tr>
+                <tr>
+                    <td>Line</td>
+                    <td><input type="text" /></td>
+                    <td>Inspected By</td>
+                    <td><input type="text" /></td>
+                    <td>Time</td>
+                    <td><input type="time" /></td>
+                </tr>
+                <tr>
+                    <td>Area</td>
+                    <td><input type="text" /></td>
+                    <td>Owner</td>
+                    <td><input type="text" /></td>
+                    <td>Workspace</td>
+                    <td><input type="text" /></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="datarow">
+                    <td class="dataSection">No</td>
+                    <td class="dataSection" colspan="2">Details</td>
+                    <td class="dataSection" colspan="3">Picture/Drawing/Obeservation</td>
+                </tr>
 
+            <tfoot id="tableFooter">
                 <tr>
                     <td>Prepared By</td>
                     <td><input type="text" /></td>
@@ -84,15 +86,16 @@
                     <td>Date</td>
                     <td><input type="date" /></td>
                 </tr>
-                </tbody>
-    </table>
+            </tfoot>
+            </tbody>
+        </table>
     </div>
     <section class="adding">
         <form id="formData">
             <label>Details</label>
             <textarea id="detailsInsertData" name="detailsInsertData" rows="4" cols="50">
             </textarea>
-        
+
             <!-- <label>Picture</label> -->
             <!-- <div>
                 <h4>Drag and Drop</h4>
@@ -107,4 +110,5 @@
         <button id="downloadPDF" name="downloadPDF" value="PDFDownload">PDF Download</button>
     </section>
 </body>
+
 </html>
