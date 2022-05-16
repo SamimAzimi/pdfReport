@@ -1,9 +1,11 @@
+import {PageMetaData} from "./page"
+
 var uploadImage = '';
 var imgsrc = ''
 var ctx = '';
 const image_Input = document.getElementById('imageInput');
-
-
+const downloadPDF = document.getElementById('downloadPDF');
+ console.log(pageJson.PageMetaData)
 function drawImageScaled(img, ctx) {
    var canvas = ctx.canvas;
    var hRatio = canvas.width / img.width;
@@ -26,15 +28,16 @@ image_Input.addEventListener("change", (ev) => {
 
    if (ev.target.files) {
       file = ev.target.files[0];
-
       reader.readAsDataURL(file)
    }
+   
    reader.onloadend = function (e) {
+     
       var image = new Image();
       image.src = e.target.result;
       imgsrc = e.target.result;
       image.onload = function (ev) {
-
+         console.log(PageMetaData)
          uploadImage = image;
       }
    }
@@ -95,18 +98,39 @@ form.addEventListener('reset', (e) => {
    e.target[1].value = '';
 })
 
-const downloadPDF = document.getElementById('downloadPDF')
-downloadPDF.addEventListener('click', demoFromHTML)
 
+
+
+
+
+downloadPDF.addEventListener("click",demoFromHTML)
+const array = [1,2,3,4,5,6,7,8,9,10,11,12,13]
 function demoFromHTML() {
-   var pdf = new jsPDF({
-      orientation: "portrait",
-      unit: "in",
-      format: [4, 2]
-   });
+    var pdf = new jsPDF( 'a4');
+   const source = document.getElementById('tablediv')
 
-   const source = document.body;
 
-   pdf.fromHTML(source)
-   pdf.save();
+   
+    margins = {
+        top: 80,
+        bottom: 60,
+        left: 40,
+        width: 522
+    };
+    // all coords and widths are in jsPDF instance's declared units
+    // 'inches' in this case
+    pdf.fromHTML(
+    source, // HTML string or DOM elem ref.
+    margins.left, // x coord
+    margins.top, { // y coord
+        'width': margins.width, // max width of content on PDF
+        
+    },
+
+    function (dispose) {
+        // dispose: object with X, Y of the last line add to the PDF 
+        //          this allow the insertion of new lines after html
+        pdf.save('Test.pdf');
+    }, margins);
+
 }
