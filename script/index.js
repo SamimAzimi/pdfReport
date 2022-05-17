@@ -123,6 +123,7 @@ function pdfGen() {
    const phone = PageMetaData[0].phone
    const title = PageMetaData[0].title
    doc.autoTable({
+       
       didDrawPage: function (data) {
        
          doc.addImage(logo1, 'JPEG', 1.5, 1, 2, 2)
@@ -140,6 +141,7 @@ function pdfGen() {
 
          doc.autoTable({
          margin: { top: 5.7 },
+         
          columns: [
          { header: 'Client'},
          { header: document.getElementById('clientInput').value },
@@ -151,6 +153,7 @@ function pdfGen() {
       didDrawPage: function (data) {
           doc.autoTable({
               margin: { top: 6.5 },
+                
          columns: [
          { header: 'Line'},
          { header: document.getElementById('LineInput').value },
@@ -168,7 +171,10 @@ function pdfGen() {
          { header: document.getElementById('owner').value },
          { header: 'Workspace' },
          { header: document.getElementById('workspace').value },              
-      ],})
+      ],
+   
+        
+      })
       }
           })
       }
