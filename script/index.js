@@ -8,7 +8,8 @@ var imageBase=[]
 
 const image_Input = document.getElementById('imageInput');
 const downloadPDF = document.getElementById('downloadPDF');
-
+const client = document.getElementById('clientInput').value;
+const clientcol = document.getElementById('clientColumn')
 function drawImageScaled(img, ctx) {
    var canvas = ctx.canvas;
    var hRatio = canvas.width / img.width;
@@ -89,7 +90,7 @@ form.addEventListener('submit', (e) => {
 
    bodyData.push( { id: colnumber , desc:  e.target[0].value.replace(/\n\r?/g, '<br />'), img: colnumber },)
    imageBase.push({id:colnumber,img: imgsrc})
-      console.log(bodyData)
+  
    e.target[0].value = '';
    e.target[1].value = '';
 
@@ -104,10 +105,6 @@ form.addEventListener('reset', (e) => {
 })
 
 
-
-
-
-
 downloadPDF.addEventListener("click", pdfGen)
 
 function pdfGen() {
@@ -117,7 +114,7 @@ function pdfGen() {
       format: 'a4',
 
    });
-console.log(imageBase.map(a=>console.log(a)))
+
    const logo1 = PageMetaData[0].logo1
    const logo2 = PageMetaData[0].logo2
    const name = PageMetaData[0].name
@@ -142,18 +139,41 @@ console.log(imageBase.map(a=>console.log(a)))
          doc.text(8.5, 5.3, title)
 
          doc.autoTable({
-            margin: { top: 5.7 },
-            html: "#tableHead",
-            didDrawPage: function (data) {
-               
-            }
+         margin: { top: 5.7 },
+         columns: [
+         { header: 'Client'},
+         { header: document.getElementById('clientInput').value },
+         { header: 'Purpose'},
+         { header: document.getElementById('purposeInput').value },
+         { header: 'Date' },
+         { header: document.getElementById('dateInput').value },              
+      ],
+      didDrawPage: function (data) {
+          doc.autoTable({
+              margin: { top: 6.5 },
+         columns: [
+         { header: 'Line'},
+         { header: document.getElementById('LineInput').value },
+         { header: 'Inspected By'},
+         { header: document.getElementById('inspectBy').value },
+         { header: 'Time' },
+         { header: document.getElementById('TimeBy').value },              
+      ],
+      didDrawPage: function (data) {
+          doc.autoTable({    margin: { top: 7.2 },
+         columns: [
+         { header: 'Area'},
+         { header: document.getElementById('area').value },
+         { header: 'Owner'},
+         { header: document.getElementById('owner').value },
+         { header: 'Workspace' },
+         { header: document.getElementById('workspace').value },              
+      ],})
+      }
+          })
+      }
          })
 
-// doc.autoTable({
-//                   rowPageBreak: 'avoid',
-//                   margin: { top: 25 },
-//                   html: "#tableFooter",
-//                })
 
       },
       columnStyles: {
@@ -163,12 +183,12 @@ console.log(imageBase.map(a=>console.log(a)))
 
       },
       didDrawCell: (data) => {
-         console.log(data.cell.text)
+      
          if (data.section === "body" && data.column.index === 2 && bodyData.length>0) {
             var result = imageBase.filter(im => im.id == data.cell.text );
-            console.log(result,`result image ${result.map(id=>console.log(id))}`)
+         
             if(result){
-               console.log(result)
+             
                doc.addImage(result[0].img, 'JPEG', data.cell.x + 0.1, data.cell.y + 0.1, data.cell.width, data.cell.height)
             }
          }
@@ -184,5 +204,12 @@ console.log(imageBase.map(a=>console.log(a)))
       ],
 
    })
+
+
+   
    doc.save();
 }
+
+
+
+
