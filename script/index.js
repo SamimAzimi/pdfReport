@@ -147,22 +147,22 @@ function pdfGen() {
 
       //prepared by 
       doc.text('Prepared By:', data.settings.margin.left, pageHeight - 3)
-      doc.text(document.getElementById('preparedBy').value, 3, pageHeight - 3)
+      doc.text(document.getElementById('preparedBy').value, 6, pageHeight - 3)
       doc.text('Date:', 10, pageHeight - 3)
-      doc.text(document.getElementById('preparedDate').value, data.settings.margin.left, pageHeight - 3)
+      doc.text(document.getElementById('preparedDate').value, 12, pageHeight - 3)
 
 
       //verified by 
       doc.text('Verified By:', data.settings.margin.left, pageHeight - 2)
-      doc.text(document.getElementById('verifiedBy').value, data.settings.margin.left, pageHeight - 2)
+      doc.text(document.getElementById('verifiedBy').value, 6, pageHeight - 2)
       doc.text('Date:', 10, pageHeight - 2)
-      doc.text(document.getElementById('verifiedDate').value, data.settings.margin.left, pageHeight - 1)
+      doc.text(document.getElementById('verifiedDate').value, 12, pageHeight - 1)
 
       //Approved By
       doc.text('Approved By:', data.settings.margin.left, pageHeight -1)
-      doc.text(document.getElementById('ApprovedBy').value, data.settings.margin.left, pageHeight - 1)
+      doc.text(document.getElementById('ApprovedBy').value, 6, pageHeight - 1)
       doc.text('Date:', 10, pageHeight - 1)
-      doc.text(document.getElementById('approvedDate').value, data.settings.margin.left, pageHeight - 2)
+      doc.text(document.getElementById('approvedDate').value, 12, pageHeight - 2)
    
       // header
          doc.autoTable({
