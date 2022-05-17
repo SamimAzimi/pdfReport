@@ -138,7 +138,18 @@ function pdfGen() {
          doc.text(4.5, 4.3, phone)
          doc.setFontSize(12)
          doc.text(8.5, 5.3, title)
+          // Footer
+      doc.setFontSize(10)
 
+      // jsPDF 1.4+ uses getWidth, <1.4 uses .width
+      var pageSize = doc.internal.pageSize
+      var pageHeight = pageSize.height ? pageSize.height : pageSize.getHeight()
+      doc.text('Prepared By', data.settings.margin.left, pageHeight - 3)
+      doc.text(document.getElementById('preparedBy').value, data.settings.margin.left, pageHeight - 3)
+
+
+
+      // header
          doc.autoTable({
          margin: { top: 5.7 },
          
