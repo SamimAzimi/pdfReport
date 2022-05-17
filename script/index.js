@@ -144,11 +144,26 @@ function pdfGen() {
       // jsPDF 1.4+ uses getWidth, <1.4 uses .width
       var pageSize = doc.internal.pageSize
       var pageHeight = pageSize.height ? pageSize.height : pageSize.getHeight()
-      doc.text('Prepared By', data.settings.margin.left, pageHeight - 3)
-      doc.text(document.getElementById('preparedBy').value, data.settings.margin.left, pageHeight - 3)
+
+      //prepared by 
+      doc.text('Prepared By:', data.settings.margin.left, pageHeight - 3)
+      doc.text(document.getElementById('preparedBy').value, 3, pageHeight - 3)
+      doc.text('Date:', 10, pageHeight - 3)
+      doc.text(document.getElementById('preparedDate').value, data.settings.margin.left, pageHeight - 3)
 
 
+      //verified by 
+      doc.text('Verified By:', data.settings.margin.left, pageHeight - 2)
+      doc.text(document.getElementById('verifiedBy').value, data.settings.margin.left, pageHeight - 2)
+      doc.text('Date:', 10, pageHeight - 2)
+      doc.text(document.getElementById('verifiedDate').value, data.settings.margin.left, pageHeight - 1)
 
+      //Approved By
+      doc.text('Approved By:', data.settings.margin.left, pageHeight -1)
+      doc.text(document.getElementById('ApprovedBy').value, data.settings.margin.left, pageHeight - 1)
+      doc.text('Date:', 10, pageHeight - 1)
+      doc.text(document.getElementById('approvedDate').value, data.settings.margin.left, pageHeight - 2)
+   
       // header
          doc.autoTable({
          margin: { top: 5.7 },
