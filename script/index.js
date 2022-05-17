@@ -163,15 +163,14 @@ console.log(imageBase.map(a=>console.log(a)))
 
       },
       didDrawCell: (data) => {
-         console.log(data.table.body.map(a=>console.log(a.raw.img)))
+         console.log(data.cell.text)
          if (data.section === "body" && data.column.index === 2 && bodyData.length>0) {
-            imageBase.map(a=>{
-               if(a.id===data.table.body.map(a=>(a.raw.img))){
-
-                  doc.addImage(a.img, 'JPEG', data.cell.x + 0.1, data.cell.y + 0.1, data.cell.width, data.cell.height)
-               }
-            })
-            
+            var result = imageBase.filter(im => im.id == data.cell.text );
+            console.log(result,`result image ${result.map(id=>console.log(id))}`)
+            if(result){
+               console.log(result)
+               doc.addImage(result[0].img, 'JPEG', data.cell.x + 0.1, data.cell.y + 0.1, data.cell.width, data.cell.height)
+            }
          }
       },
       rowPageBreak: 'avoid', // avoid breaking rows into multiple sections
@@ -181,7 +180,7 @@ console.log(imageBase.map(a=>console.log(a)))
       columns: [
          { header: 'No', dataKey: 'id' },
          { header: 'Details', dataKey: 'desc' },
-         { header: 'Picture/Drawing/Observation', dataKey: '' },
+         { header: 'Picture/Drawing/Observation', dataKey: 'img' },
       ],
 
    })
