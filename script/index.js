@@ -50,7 +50,6 @@ image_Input.addEventListener("change", (ev,) => {
 })
 
 
-
 const form = document.getElementById('formData')
 form.addEventListener('submit', (e) => {
    e.preventDefault();
