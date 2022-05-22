@@ -180,7 +180,7 @@ function pdfGen() {
       doc.setDrawColor(169,169,169)
       doc.setFillColor(128,128,128)
       doc.rect(data.settings.margin.left, pageHeight - 4, 18, 3)
-
+doc.line(data.settings.margin.left, pageHeight-3, 19.5,  pageHeight-3)
 doc.line(data.settings.margin.left, pageHeight-2, 19.5,  pageHeight-2)
       //header border 
       doc.setDrawColor(169,169,169)
