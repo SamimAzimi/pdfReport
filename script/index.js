@@ -4,7 +4,7 @@ var uploadImage = '';
 var imgsrc = ''
 var ctx = '';
 const bodyData = []
-var imageBase = []
+var imageBase=[]
 
 const image_Input = document.getElementById('imageInput');
 const downloadPDF = document.getElementById('downloadPDF');
@@ -34,10 +34,10 @@ image_Input.addEventListener("change", (ev,) => {
       const file = ev.target.files[0];
       reader.readAsDataURL(file)
    }
-
+   
    reader.onloadend = function (e) {
-
-
+     
+      
 
       var image = new Image();
       image.src = e.target.result;
@@ -88,9 +88,9 @@ form.addEventListener('submit', (e) => {
    new_row.appendChild(col1)
    new_row.appendChild(col2)
 
-   bodyData.push({ id: colnumber, desc: e.target[0].value.replace(/\n\r?/g, '<br />'), img: colnumber },)
-   imageBase.push({ id: colnumber, img: imgsrc })
-
+   bodyData.push( { id: colnumber , desc:  e.target[0].value.replace(/\n\r?/g, '<br />'), img: colnumber },)
+   imageBase.push({id:colnumber,img: imgsrc})
+  
    e.target[0].value = '';
    e.target[1].value = '';
 
@@ -123,9 +123,9 @@ function pdfGen() {
    const phone = PageMetaData[0].phone
    const title = PageMetaData[0].title
    doc.autoTable({
-
+       
       didDrawPage: function (data) {
-
+       
          doc.addImage(logo1, 'JPEG', 1.5, 1, 2, 2)
          doc.addImage(logo2, 'JPEG', 17.5, 1, 2, 2)
          doc.setFontSize(15)
@@ -138,101 +138,110 @@ function pdfGen() {
          doc.text(4.5, 4.3, phone)
          doc.setFontSize(12)
          doc.text(8.5, 5.3, title)
-         // Footer
-         doc.setFontSize(10)
+          // Footer
+          doc.setFontSize(10)
+          
+          // jsPDF 1.4+ uses getWidth, <1.4 uses .width
+          var pageSize = doc.internal.pageSize
+          var pageHeight = pageSize.height ? pageSize.height : pageSize.getHeight()
+      
+      
+      //prepared By
+      doc.setDrawColor(169,169,169)
+      doc.setFillColor(128,128,128)
+      doc.rect(data.settings.margin.left, pageHeight - 4, 2.4, 3,'FD')
+      doc.text('Prepared By:', data.settings.margin.left+0.1, pageHeight - 3.5)
+      doc.text('Name', data.settings.margin.left+0.1, pageHeight - 2.3)
+      doc.text('Date', data.settings.margin.left+0.1, pageHeight - 1.2)
+      doc.text(document.getElementById('preparedBy').value, data.settings.margin.left+3, pageHeight - 2.3)
+      doc.text(document.getElementById('preparedDate').value, data.settings.margin.left+3, pageHeight - 1.2)
 
-         // jsPDF 1.4+ uses getWidth, <1.4 uses .width
-         var pageSize = doc.internal.pageSize
-         var pageHeight = pageSize.height ? pageSize.height : pageSize.getHeight()
+      //verified by 
+      doc.setDrawColor(169,169,169)
+      doc.setFillColor(128,128,128)
+      doc.rect(data.settings.margin.left+6.5, pageHeight - 4, 2.4, 3,'FD')
+      doc.text('Verified By:', data.settings.margin.left+6.7, pageHeight - 3.5)
+      doc.text('Name',data.settings.margin.left+6.7, pageHeight - 2.3)
+      doc.text('Date',data.settings.margin.left+6.7, pageHeight -1.2)
+      doc.text(document.getElementById('verifiedBy').value, data.settings.margin.left+9,  pageHeight - 2.3)
+      doc.text(document.getElementById('verifiedDate').value, data.settings.margin.left+9, pageHeight -1.2)
 
-         //prepared by 
-         doc.line(50, 50, 50, 50, "f")
-         doc.text('Prepared By:', data.settings.margin.left, pageHeight - 3)
-         doc.text(document.getElementById('preparedBy').value, 6, pageHeight - 3)
-         doc.text('Date:', 10, pageHeight - 3)
-         doc.text(document.getElementById('preparedDate').value, 12, pageHeight - 3)
+      // approved by 
+      doc.setDrawColor(169,169,169)
+      doc.setFillColor(128,128,128)
+      doc.rect(data.settings.margin.left+13, pageHeight - 4, 2.4, 3,'FD')
+      doc.text('Approved By:', data.settings.margin.left+13.1, pageHeight - 3.5)
+      doc.text('Name',data.settings.margin.left+13.1, pageHeight - 2.3)
+      doc.text('Date',data.settings.margin.left+13.1, pageHeight -1.2)
+      doc.text(document.getElementById('ApprovedBy').value,data.settings.margin.left+15.7,  pageHeight - 2.3)
+      doc.text(document.getElementById('approvedDate').value,  data.settings.margin.left+15.7, pageHeight -1.2)
+
+      //footer border
+      doc.setDrawColor(169,169,169)
+      doc.setFillColor(128,128,128)
+      doc.rect(data.settings.margin.left, pageHeight - 4, 18, 3)
 
 
-         //verified by 
-         doc.text('Verified By:', data.settings.margin.left, pageHeight - 2)
-         doc.text(document.getElementById('verifiedBy').value, 6, pageHeight - 2)
-         doc.text('Date:', 10, pageHeight - 2)
-         doc.text(document.getElementById('verifiedDate').value, 12, pageHeight - 1)
-
-         //Approved By
-         doc.text('Approved By:', data.settings.margin.left, pageHeight - 1)
-         doc.text(document.getElementById('ApprovedBy').value, 6, pageHeight - 1)
-         doc.text('Date:', 10, pageHeight - 1)
-         doc.text(document.getElementById('approvedDate').value, 12, pageHeight - 2)
-
-         // header
+      //header border 
+      doc.setDrawColor(169,169,169)
+      doc.setFillColor(128,128,128)
+      doc.rect(data.settings.margin.left,5, 18, 3,'FD')
+      // header
          doc.autoTable({
-            margin: { top: 5.7 },
-            theme: "grid",
-
-            tableLineColor: 500,
-            tableLineWidth: 0,
-            tableWidth: "auto",
-
-            columns: [
-               { header: 'Client' },
-               { header: document.getElementById('clientInput').value },
-               { header: 'Purpose' },
-               { header: document.getElementById('purposeInput').value },
-               { header: 'Date' },
-               { header: document.getElementById('dateInput').value },
-            ],
-            columnStyles: {
-               0: { cellWidth: 1 },
-               2: { cellWidth: 8 },
-               4: { cellWidth: 3 },
-
-            },
-            didDrawPage: function (data) {
-               console.log(data)
-               doc.autoTable({
-                  margin: { top: 6.5 },
-
-                  columns: [
-                     { header: 'Line', },
-                     { header: document.getElementById('LineInput').value },
-                     { header: 'Inspected By' },
-                     { header: document.getElementById('inspectBy').value },
-                     { header: 'Time' },
-                     { header: document.getElementById('TimeBy').value },
-                  ],
-
-                  didDrawPage: function (data) {
-                     doc.autoTable({
-                        margin: { top: 7.2 },
-
-                        columns: [
-                           { header: 'Area' },
-                           { header: document.getElementById('area').value },
-                           { header: 'Owner' },
-                           { header: document.getElementById('owner').value },
-                           { header: 'Workspace' },
-                           { header: document.getElementById('workspace').value },
-                        ],
-
-
-                     })
-                  },
-
-               })
-
-            },
-
+         margin: { top: 5.7 },
+         
+         columns: [
+         { header: 'Client'},
+         { header: document.getElementById('clientInput').value },
+         { header: 'Purpose'},
+         { header: document.getElementById('purposeInput').value },
+         { header: 'Date' },
+         { header: document.getElementById('dateInput').value },              
+      ],
+      didDrawPage: function (data) {
+          doc.autoTable({
+              margin: { top: 6.5 },
+                
+         columns: [
+         { header: 'Line'},
+         { header: document.getElementById('LineInput').value },
+         { header: 'Inspected By'},
+         { header: document.getElementById('inspectBy').value },
+         { header: 'Time' },
+         { header: document.getElementById('TimeBy').value },              
+      ],
+      didDrawPage: function (data) {
+          doc.autoTable({    margin: { top: 7.2 },
+         columns: [
+         { header: 'Area'},
+         { header: document.getElementById('area').value },
+         { header: 'Owner'},
+         { header: document.getElementById('owner').value },
+         { header: 'Workspace' },
+         { header: document.getElementById('workspace').value },              
+      ],
+   
+        
+      })
+      }
+          })
+      }
          })
+
+
       },
-
+      columnStyles: {
+         0: { cellWidth: 1, minCellHeight:5 },
+         1: { cellWidth: 8.01 },
+         2: { cellWidth: 9.2 },
+      },
       didDrawCell: (data) => {
-
-         if (data.section === "body" && data.column.index === 2 && bodyData.length > 0) {
-            var result = imageBase.filter(im => im.id == data.cell.text);
-
-            if (result) {
-
+      
+         if (data.section === "body" && data.column.index === 2 && bodyData.length>0) {
+            var result = imageBase.filter(im => im.id == data.cell.text );
+         
+            if(result){
+             
                doc.addImage(result[0].img, 'JPEG', data.cell.x + 0.1, data.cell.y + 0.1, data.cell.width, data.cell.height)
             }
          }
@@ -240,7 +249,7 @@ function pdfGen() {
       rowPageBreak: 'avoid', // avoid breaking rows into multiple sections
       margin: { top: 8 },
       body: bodyData,
-      bodyStyles: { minCellHeight: 5 },
+      bodyStyles: {minCellHeight:5 },
       columns: [
          { header: 'No', dataKey: 'id' },
          { header: 'Details', dataKey: 'desc' },
@@ -248,8 +257,6 @@ function pdfGen() {
       ],
 
    })
-
-
 
    doc.save();
 }
