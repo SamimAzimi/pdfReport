@@ -5,6 +5,23 @@ var imgsrc = ''
 var ctx = '';
 const bodyData = []
 var imageBase=[]
+toastr.options = {
+  "closeButton": true,
+  "newestOnTop": false,
+  "progressBar": true,
+  "positionClass": "top-right",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+}
+
 
 const image_Input = document.getElementById('imageInput');
 const downloadPDF = document.getElementById('downloadPDF');
@@ -55,7 +72,6 @@ form.addEventListener('submit', (e) => {
    e.preventDefault();
 
 
-
    const table = document.getElementById('table')
    let new_row = document.createElement("tr")
    new_row.classList.add('dataHeadings');
@@ -75,19 +91,20 @@ form.addEventListener('submit', (e) => {
    // canvas 
 
    var image = new Image();
+   
    image.src = imgsrc;
    var canvas = document.createElement('canvas')
    canvas.setAttribute("id", "test")
 
    ctx = canvas.getContext('2d');
-   drawImageScaled(uploadImage, ctx)
+   // drawImageScaled(uploadImage, ctx)
    col2.appendChild(image)
 
    new_row.appendChild(col)
    new_row.appendChild(col1)
    new_row.appendChild(col2)
 
-   bodyData.push( { id: colnumber , desc:  e.target[0].value.replace(/\n\r?/g, '<br />'), img: colnumber },)
+   bodyData.push( { id: colnumber , desc:  e.target[0].value.replace(/\n\r?/g, '\n'), img: colnumber },)
    imageBase.push({id:colnumber,img: imgsrc})
   
    e.target[0].value = '';
@@ -260,6 +277,7 @@ doc.line(data.settings.margin.left, pageHeight-2, 19.5,  pageHeight-2)
    })
 
    doc.save();
+   toastr.info("Your PDF Downloaded Successfully")
 }
 
 
