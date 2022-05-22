@@ -181,7 +181,7 @@ function pdfGen() {
       doc.setFillColor(128,128,128)
       doc.rect(data.settings.margin.left, pageHeight - 4, 18, 3)
 
-
+doc.line(data.settings.margin.left, pageHeight-2, 19.5,  pageHeight-2)
       //header border 
       doc.setDrawColor(169,169,169)
       doc.setFillColor(128,128,128)
@@ -193,12 +193,14 @@ function pdfGen() {
       doc.rect(data.settings.margin.left,5.5, 3, 2.5,"FD")
       doc.text('Client', data.settings.margin.left+0.3, 6)
       doc.text(document.getElementById('clientInput').value, data.settings.margin.left+3.1, 6)
+
+
       doc.text('Line', data.settings.margin.left+0.3, 6.8)
       doc.text(document.getElementById('LineInput').value, data.settings.margin.left+3.1, 6.8)
       doc.text('Area', data.settings.margin.left+0.3, 7.7)
       doc.text(document.getElementById('area').value, data.settings.margin.left+3.1,  7.7)
-
       
+        
       //second column
       doc.setDrawColor(169,169,169)
       doc.setFillColor(128,128,128)
@@ -207,66 +209,27 @@ function pdfGen() {
       doc.text('Owner', data.settings.margin.left+6.1, 7.7)
       doc.text('Purpose', data.settings.margin.left+6.1, 6)
       doc.text(document.getElementById('inspectBy').value, data.settings.margin.left+9.1, 6.8)
-       doc.text(document.getElementById('owner').value, data.settings.margin.left+9.1, 7.7)
-       doc.text(document.getElementById('purposeInput').value, data.settings.margin.left+9.1, 6)
+      doc.text(document.getElementById('owner').value, data.settings.margin.left+9.1, 7.7)
+      doc.text(document.getElementById('purposeInput').value, data.settings.margin.left+9.1, 6)
       
       // third column 
-       doc.setDrawColor(169,169,169)
-       doc.setFillColor(128,128,128)
-       doc.rect(data.settings.margin.left+12,5.5, 3, 2.5,"FD")
-       doc.text('Work Force', data.settings.margin.left+12.1, 6.8)
-       doc.text('Time', data.settings.margin.left+12.1, 7.7)
-       doc.text('Date', data.settings.margin.left+12.1, 6)
-        doc.text(document.getElementById('workspace').value, data.settings.margin.left+15.1, 6.8)
-       doc.text(document.getElementById('TimeBy').value, data.settings.margin.left+15.1, 7.7)
-       doc.text(document.getElementById('dateInput').value, data.settings.margin.left+15.1, 6)
-
+      doc.setDrawColor(169,169,169)
+      doc.setFillColor(128,128,128)
+      doc.rect(data.settings.margin.left+12,5.5, 3, 2.5,"FD")
+      doc.text('Work Force', data.settings.margin.left+12.1, 6.8)
+      doc.text('Time', data.settings.margin.left+12.1, 7.7)
+      doc.text('Date', data.settings.margin.left+12.1, 6)
+      doc.text(document.getElementById('workspace').value, data.settings.margin.left+15.1, 6.8)
+      doc.text(document.getElementById('TimeBy').value, data.settings.margin.left+15.1, 7.7)
+      doc.text(document.getElementById('dateInput').value, data.settings.margin.left+15.1, 6)
+      
       doc.text('Area', data.settings.margin.left+0.3, 7.7)
       doc.text('Inspected By', data.settings.margin.left+6.1, 6.8)
       doc.text('Owner', data.settings.margin.left+6.1, 7.7)
       doc.text('Purpose', data.settings.margin.left+6.1, 6)
-      // header
-      //    doc.autoTable({
-      //    margin: { top: 5.7 },
-         
-      //    columns: [
-      //    { header: 'Client'},
-      //    { header: document.getElementById('clientInput').value },
-      //    { header: 'Purpose'},
-      //    { header: document.getElementById('purposeInput').value },
-      //    { header: 'Date' },
-      //    { header: document.getElementById('dateInput').value },              
-      // ],
-      // didDrawPage: function (data) {
-      //     doc.autoTable({
-      //         margin: { top: 6.5 },
-                
-      //    columns: [
-      //    { header: 'Line'},
-      //    { header: document.getElementById('LineInput').value },
-      //    { header: 'Inspected By'},
-      //    { header: document.getElementById('inspectBy').value },
-      //    { header: 'Time' },
-      //    { header: document.getElementById('TimeBy').value },              
-      // ],
-      // didDrawPage: function (data) {
-      //     doc.autoTable({    margin: { top: 7.2 },
-      //    columns: [
-      //    { header: 'Area'},
-      //    { header: document.getElementById('area').value },
-      //    { header: 'Owner'},
-      //    { header: document.getElementById('owner').value },
-      //    { header: 'Workspace' },
-      //    { header: document.getElementById('workspace').value },              
-      // ],
-   
-        
-      // })
-      // }
-      //     })
-      // }
-      //    })
-
+      doc.line(data.settings.margin.left, 6.3, 19.5, 6.3)
+      doc.line(data.settings.margin.left, 7.3, 19.5,  7.3)
+     
 
       },
       columnStyles: {
